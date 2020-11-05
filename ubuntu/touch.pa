@@ -37,11 +37,6 @@ load-module module-switch-on-port-available
 ### Switch when connected by default
 load-module module-switch-on-connect skip_abstract=yes
 
-### Automatically load the Pulseaudio Droid
-.ifexists module-droid-discover.so
-load-module module-droid-discover rate=48000 quirks=+unload_call_exit
-.endif
-
 ### Automatically load the trust-store module
 .ifexists module-trust-store.so
 load-module module-trust-store
@@ -155,7 +150,12 @@ set-default-source source.primary
 #load-module module-droid-card-24 rate=48000 quirks=+unload_call_exit
 #.endif
 
+### Automatically load the Pulseaudio Droid
+.ifexists module-droid-discover.so
+load-module module-droid-discover rate=48000 quirks=+unload_call_exit
+.endif
+
 ### Automatically load the audioflinger glue
-#.ifexists module-droid-glue-24.so
-#load-module module-droid-glue-24
-#.endif
+.ifexists module-droid-glue-24.so
+load-module module-droid-glue-24
+.endif
